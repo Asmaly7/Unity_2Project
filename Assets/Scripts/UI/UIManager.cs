@@ -6,6 +6,16 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject Panel;
+
+    public ItemSlot[] itemSlots;
+
+    public void SetInventory()
+    {
+        for (int i = 0; i < DataManager.instance.gameData.myItems.Length; i++)
+        {
+            itemSlots[i].Init(DataManager.instance.gameData.myItems[i]);
+        }
+    }
     
 
     public void OpenPanel()
@@ -19,9 +29,7 @@ public class UIManager : MonoBehaviour
     public void MeinMenu()
     {
         Panel.SetActive(false);
-    }
-
-    
+    }  
 
    
 

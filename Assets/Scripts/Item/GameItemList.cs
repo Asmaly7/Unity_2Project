@@ -1,59 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.Enumeration;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class GameItemList : MonoBehaviour
+
+[CreateAssetMenu(fileName = "ItemData_", menuName ="Data/ItemData", order = 0)]
+public class GameItemList : ScriptableObject
 {
-    public List<GameObject> items = new List<GameObject>();
-    private GameObject equippedItem;
-    public Image interactionImage;
+    public string itemName;
+    public int price;
+    public bool isEquiped;
+    public Sprite image;
+    
 
-    void Start()
-    {
-        
-        GameObject axe = LoadItem("Axe");
-        GameObject sword = LoadItem("Sword");
-        GameObject armor = LoadItem("Armor");
-        GameObject helmet = LoadItem("Helmet");
-
-        items.Add(axe);
-        items.Add(sword);
-        items.Add(armor);
-        items.Add(helmet);
-    }
-
-    GameObject LoadItem(string itemName)
-    {
-        return Resources.Load<GameObject>("Prefabs/" + itemName); 
-    }
-
-    public void EquipItem(int itemIndex)
-    {
-        if (itemIndex >= 0 && itemIndex < items.Count)
-        {
-
-            if (equippedItem != null)
-            {
-                Destroy(equippedItem);
-            }
-
-            equippedItem = Instantiate(items[itemIndex]);
-            interactionImage.gameObject.SetActive(true);
-
-        }
-    }
-    public void UnequipItem()
-        {
-            
-            if (equippedItem != null)
-            {
-                
-                equippedItem = null;
-
-                
-                interactionImage.gameObject.SetActive(false);
-            }
-        }
+   
     
 }
